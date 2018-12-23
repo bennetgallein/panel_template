@@ -1,0 +1,7 @@
+{
+	"APP_URL": "/shop/TS3AudioBotCP/",
+	"DB_HOST": "localhost",
+	"DB_USER": "root",
+	"DB_PASSWORD": "root",
+	"DB_NAME": "ts3abcp"
+}

@@ -25,17 +25,26 @@ class Panel {
 
     /**
      * Panel constructor.
+     * @throws FilesystemException
      */
     public function __construct() {
         $this->engine = new Engine("_views");
         $this->collection = new Collection();
+
+
+        $config = file_get_contents("config.json");
+        $config = json_decode($config);
+        foreach ($config as $key => $value) {
+            define($key, $value);
+        }
+
 
         self::setInstance($this);
 
         $this->initBaseRoutes();
 
         // NavigationManager
-        new DataBase("localhost", "powerhost", "powerhost", "powerhost");
+        new DataBase(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         new PermissionManager();
         new NavigationManager();
 

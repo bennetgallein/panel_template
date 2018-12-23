@@ -7,7 +7,10 @@ require("vendor/autoload.php");
 
 session_start();
 
-define("APP_URL", "panel_template");
 
 Debugger::enable();
-$p = new Panel();
+try {
+    $p = new Panel();
+} catch (\Safe\Exceptions\FilesystemException $e) {
+    print($e->getTrace());
+}

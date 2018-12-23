@@ -22,14 +22,10 @@ class BaseModule extends Module {
     /**
      * UserModule constructor.
      * @throws \Safe\Exceptions\FilesystemException
-     * @throws JsonException
-     * @throws PcreException
      */
     public function __construct() {
         parent::__construct($this->name, $this->version, $this->author);
         $this->routes();
-        $this->sidebar();
-        $this->permissions();
     }
 
     public function routes() {
@@ -37,25 +33,5 @@ class BaseModule extends Module {
             array("/", "BaseModule\Test::main", ["engine" => $this->engine], "GET"),
         );
         $this->_registerRoutes($data);
-    }
-
-    /**
-     * @throws JsonException
-     */
-    public function sidebar() {
-        $data = array(
-            new NavPoint($this->name, "Test Point", "", "module.user.test")
-        );
-        $this->_registerNavbar($data);
-    }
-
-    /**
-     * @throws PcreException
-     */
-    public function permissions() {
-        $data = array(
-            new Permission($this->name, "module.user.test")
-        );
-        $this->_registerPermissions($data);
     }
 }
